@@ -20,6 +20,5 @@ try:
         print(f"{temperature:.1f}°F is {result:.2f}°C")
     else:
         print("Invalid unit. Please enter 'C' or 'F'.")
-
 except ValueError:
     print("Invalid input. Please enter a valid number for temperature.")
