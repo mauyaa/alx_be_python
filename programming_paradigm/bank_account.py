@@ -1,15 +1,26 @@
 #!/usr/bin/env python3
-import sys
-from programming_paradigm.bank_account import BankAccount
+"""
+BankAccount class for ALX task.
+Supports deposit, withdraw, and display methods with required messages.
+"""
 
-account = BankAccount(100)  # Example starting balance
+class BankAccount:
+    def __init__(self, initial_balance=0):
+        """Initialize account with optional initial balance."""
+        self.balance = initial_balance
 
-if len(sys.argv) > 1:
-    if sys.argv[1] == "display":
-        account.display()
-    elif sys.argv[1] == "withdraw":
-        if len(sys.argv) > 2:
-            account.withdraw(float(sys.argv[2]))
-    elif sys.argv[1] == "deposit":
-        if len(sys.argv) > 2:
-            account.deposit(float(sys.argv[2]))
+    def deposit(self, amount):
+        """Add amount to balance."""
+        if amount > 0:
+            self.balance += amount
+
+    def withdraw(self, amount):
+        """Subtract amount from balance if funds are sufficient."""
+        if amount > self.balance:
+            print("Insufficient funds.")
+        else:
+            self.balance -= amount
+
+    def display(self):
+        """Print the current balance."""
+        print(f"Current Balance: ${self.balance}")
