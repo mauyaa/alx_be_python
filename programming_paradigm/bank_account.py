@@ -20,14 +20,10 @@ class BankAccount:
             return True
         return False
 
-    def display_balance(self):
-        """
-        Print the current balance exactly like:
-          Current Balance: $100
-        or when not whole:
-          Current Balance: $100.50
-        """
-        bal = self.account_balance
+   def display_balance(self):
+    """Print the current balance with exactly two decimal places."""
+    print(f"Current Balance: ${self.account_balance:.2f}")
+
         # If it's a float equal to integer, show as integer
         try:
             # handle float-like values
