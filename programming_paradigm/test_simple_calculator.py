@@ -1,5 +1,3 @@
-# programming_paradigm/test_simple_calculator.py
-
 import unittest
 from simple_calculator import SimpleCalculator
 
@@ -16,7 +14,7 @@ class TestSimpleCalculator(unittest.TestCase):
         self.assertEqual(self.calc.subtract(5, 3), 2)
         self.assertEqual(self.calc.subtract(0, 5), -5)
 
-    def test_multiply(self):
+    def test_multiplication(self):  # renamed from test_multiply
         self.assertEqual(self.calc.multiply(2, 3), 6)
         self.assertEqual(self.calc.multiply(-1, 3), -3)
         self.assertEqual(self.calc.multiply(0, 10), 0)
