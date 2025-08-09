@@ -1,24 +1,15 @@
-# programming_paradigm/bank_account.py
+#!/usr/bin/env python3
+import sys
+from programming_paradigm.bank_account import BankAccount
 
-class BankAccount:
-    def __init__(self, initial_balance=0):
-        # Initialize the account balance
-        self.account_balance = initial_balance
+account = BankAccount(100)  # Example starting balance
 
-    def deposit(self, amount):
-        """Add the specified amount to the account balance."""
-        self.account_balance += amount
-
-    def withdraw(self, amount):
-        """
-        Deduct the specified amount from the account balance if funds are sufficient.
-        Return True if withdrawal succeeded, otherwise False.
-        """
-        if amount <= self.account_balance:
-            self.account_balance -= amount
-            return True
-        return False
-
-    def display_balance(self):
-        """Print the current balance in a user-friendly format."""
-        print(f"Current Balance: ${self.account_balance}")
+if len(sys.argv) > 1:
+    if sys.argv[1] == "display":
+        account.display()
+    elif sys.argv[1] == "withdraw":
+        if len(sys.argv) > 2:
+            account.withdraw(float(sys.argv[2]))
+    elif sys.argv[1] == "deposit":
+        if len(sys.argv) > 2:
+            account.deposit(float(sys.argv[2]))
