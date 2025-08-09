@@ -1,24 +1,24 @@
+# programming_paradigm/bank_account.py
+
 class BankAccount:
-    def __init__(self, account_number, account_holder, balance=0.0):
-        self.account_number = account_number
-        self.account_holder = account_holder
-        self.balance = balance
+    def __init__(self, initial_balance=0):
+        # Initialize the account balance
+        self.account_balance = initial_balance
 
     def deposit(self, amount):
-        if amount > 0:
-            self.balance += amount
-            return f"Deposited ${amount:.2f}. New balance: ${self.balance:.2f}"
-        else:
-            return "Invalid deposit amount."
+        """Add the specified amount to the account balance."""
+        self.account_balance += amount
 
     def withdraw(self, amount):
-        if amount > self.balance:
-            return "Insufficient funds."
-        elif amount > 0:
-            self.balance -= amount
-            return f"Withdrew ${amount:.2f}. New balance: ${self.balance:.2f}"
-        else:
-            return "Invalid withdrawal amount."
+        """
+        Deduct the specified amount from the account balance if funds are sufficient.
+        Return True if withdrawal succeeded, otherwise False.
+        """
+        if amount <= self.account_balance:
+            self.account_balance -= amount
+            return True
+        return False
 
     def display_balance(self):
-        return f"Current balance: ${self.balance:.2f}"
+        """Print the current balance in a user-friendly format."""
+        print(f"Current Balance: ${self.account_balance}")
