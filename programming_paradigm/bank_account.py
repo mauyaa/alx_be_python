@@ -7,7 +7,6 @@ class BankAccount:
 
     def deposit(self, amount):
         """Add the specified amount to account_balance."""
-        # accept numeric input (int/float)
         self.account_balance += amount
 
     def withdraw(self, amount):
@@ -20,22 +19,10 @@ class BankAccount:
             return True
         return False
 
-   def display_balance(self):
-    """Print the current balance with exactly two decimal places."""
-    print(f"Current Balance: ${self.account_balance:.2f}")
-
-        # If it's a float equal to integer, show as integer
-        try:
-            # handle float-like values
-            if isinstance(bal, float) and bal.is_integer():
-                print(f"Current Balance: ${int(bal)}")
-            else:
-                # strip unnecessary trailing zeros for floats
-                if isinstance(bal, float):
-                    s = f"{bal:.2f}".rstrip('0').rstrip('.')
-                    print(f"Current Balance: ${s}")
-                else:
-                    print(f"Current Balance: ${bal}")
-        except Exception:
-            # fallback to simple print
-            print(f"Current Balance: ${bal}")
+    def display_balance(self):
+        """
+        Print the current balance exactly like:
+          Current Balance: $100.00
+          Current Balance: $100.50
+        """
+        print(f"Current Balance: ${self.account_balance:.2f}")
