@@ -1,3 +1,5 @@
+# programming_paradigm/main.py
+
 import sys
 from robust_division_calculator import safe_divide
 
@@ -8,6 +10,7 @@ def main():
 
     numerator = sys.argv[1]
     denominator = sys.argv[2]
+
     result = safe_divide(numerator, denominator)
     print(result)
 

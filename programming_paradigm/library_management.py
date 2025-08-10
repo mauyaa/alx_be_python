@@ -1,47 +1,49 @@
+# programming_paradigm/library_management.py
+
 class Book:
     def __init__(self, title, author):
         self.title = title
         self.author = author
-        self.is_borrowed = False
+        self._is_checked_out = False  # private
 
-    def __str__(self):
-        status = "Borrowed" if self.is_borrowed else "Available"
-        return f"'{self.title}' by {self.author} - {status}"
+    def check_out(self):
+        if not self._is_checked_out:
+            self._is_checked_out = True
+            return True
+        return False
+
+    def return_book(self):
+        if self._is_checked_out:
+            self._is_checked_out = False
+            return True
+        return False
+
+    def is_available(self):
+        return not self._is_checked_out
 
 
 class Library:
     def __init__(self):
-        self.books = []
+        self._books = []  # private list of Book objects
 
-    def add_book(self, title, author):
-        self.books.append(Book(title, author))
-        print(f"Book added: '{title}' by {author}")
+    def add_book(self, book):
+        self._books.append(book)
 
-    def display_books(self):
-        if not self.books:
-            print("No books in the library.")
-        else:
-            for book in self.books:
-                print(book)
-
-    def borrow_book(self, title):
-        for book in self.books:
-            if book.title == title:
-                if book.is_borrowed:
-                    print(f"'{title}' is already borrowed.")
-                else:
-                    book.is_borrowed = True
-                    print(f"You borrowed '{title}'.")
-                return
-        print(f"'{title}' not found in the library.")
+    def check_out_book(self, title):
+        for book in self._books:
+            if book.title == title and book.is_available():
+                book.check_out()
+                return True
+        return False
 
     def return_book(self, title):
-        for book in self.books:
-            if book.title == title:
-                if book.is_borrowed:
-                    book.is_borrowed = False
-                    print(f"You returned '{title}'.")
-                else:
-                    print(f"'{title}' was not borrowed.")
-                return
-        print(f"'{title}' not found in the library.")
+        for book in self._books:
+            if book.title == title and not book.is_available():
+                book.return_book()
+                return True
+        return False
+
+    def list_available_books(self):
+        for book in self._books:
+            if book.is_available():
+                print(f"{book.title} by {book.author}")
